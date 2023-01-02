@@ -8,6 +8,7 @@ import java.util.Set;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.online.helper.UserFoundException;
 import com.online.model.Role;
 import com.online.model.User;
 import com.online.model.UserRole;
@@ -31,12 +33,14 @@ public class UserController {
 @Autowired
 private UserService userService;
 
-
+@Autowired
+private BCryptPasswordEncoder bCryptPasswordEncoder;
     //creating user
     @PostMapping("/")
     public User createUser(@RequestBody User user) throws Exception{
 
     	user.setProfile("null.png");
+        user.setPassword(this.bCryptPasswordEncoder.encode(user.getPassword()));
         Set<UserRole> roles=new HashSet<>();
         Role role=new Role();
         role.setRoleId(45);
@@ -59,8 +63,8 @@ public void deleteUser(@PathVariable("userId") int userId){
     this.userService.deleteUser(userId);
 }
 
-@ExceptionHandler(UsernameNotFoundException.class)
-public ResponseEntity<?> exceptionHandler(UsernameNotFoundException ex) {
+@ExceptionHandler(UserFoundException.class)
+public ResponseEntity<?> exceptionHandler(UserFoundException ex) {
     return ResponseEntity.ok(ex.getMessage());
 }
 
