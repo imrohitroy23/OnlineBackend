@@ -36,6 +36,7 @@ public class ExamApplication implements CommandLineRunner {
       user.setLastName("Roy");
       user.setUsername("ananthroy33");
       user.setProfile("44.png");
+   
 
       Role role1 = new Role();
       role1.setRoleId(51);
