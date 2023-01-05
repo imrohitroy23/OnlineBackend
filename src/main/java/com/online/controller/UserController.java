@@ -58,6 +58,7 @@ public User getUser(@PathVariable("username") String username)
 {
     return this.userService.getUser(username);
 }
+
 @DeleteMapping("/{userId}")
 public void deleteUser(@PathVariable("userId") int userId){
     this.userService.deleteUser(userId);
