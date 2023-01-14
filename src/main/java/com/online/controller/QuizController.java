@@ -16,8 +16,9 @@ import com.online.model.exam.Quiz;
 import com.online.services.QuizService;
 
 @RestController
-@CrossOrigin("*")
+
 @RequestMapping("/quiz")
+@CrossOrigin("*")
 public class QuizController {
     @Autowired
     private QuizService quizService;

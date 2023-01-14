@@ -23,9 +23,9 @@ import com.online.services.QuestionService;
 import com.online.services.QuizService;
 
 @RestController
-@CrossOrigin("*")
-@RequestMapping("/question")
 
+@RequestMapping("/question")
+@CrossOrigin("*")
 public class QuestionController {
     @Autowired
     private QuestionService service;

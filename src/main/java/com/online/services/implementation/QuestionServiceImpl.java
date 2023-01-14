@@ -48,10 +48,16 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Override
     public void deleteQuestion(int quesId) {
-        // TODO Auto-generated method stub
+        
         Question question=new Question();
         question.setQuesId(quesId);
         this.questionRepository.delete(question);
+    }
+
+    @Override
+    public Question get(int questionsId) {
+        
+        return this.questionRepository.getOne(questionsId);
     }
 
     
