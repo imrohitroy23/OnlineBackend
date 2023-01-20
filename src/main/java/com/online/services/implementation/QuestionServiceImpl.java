@@ -57,7 +57,7 @@ public class QuestionServiceImpl implements QuestionService {
     @Override
     public Question get(int questionsId) {
         
-        return this.questionRepository.getOne(questionsId);
+        return this.questionRepository.getReferenceById(questionsId);
     }
 
     
